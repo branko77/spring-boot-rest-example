@@ -89,13 +89,7 @@ jobs:
 
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Where am I?
-      run: pwd
-      
-    - name: List files
-      run: ls -laht      
+      uses: aws-actions/amazon-ecr-login@v1   
 
     - name: helm deploy
       uses: koslib/helm-eks-action@master
@@ -107,7 +101,7 @@ jobs:
       with:
         #plugins: "https://github.com/jkroepke/helm-secrets" # optional
         command: |
-          helm upgrade --install spring-boot-rest-example spring-boot-rest-example --values spring-boot-rest-example/values.yaml --set image=732517461149.dkr.ecr.eu-west-1.amazonaws.com/springboot-example --set tag=$IMAGE_TAG
+          helm upgrade --install spring-boot-rest-example spring-boot-rest-example --values spring-boot-rest-example/values.yaml --set image=732517461149.dkr.ecr.eu-west-1.amazonaws.com/springboot-example --set tag=${{ github.sha }}
 
 
 
