@@ -101,7 +101,7 @@ jobs:
       with:
         #plugins: "https://github.com/jkroepke/helm-secrets" # optional
         command: |
-          helm upgrade spring-boot-rest-example helm/spring-boot-rest-example --values helm/spring-boot-rest-example/values.yaml --set image=$ECR_REGISTRY/$ECR_REPOSITORY --set tag=$IMAGE_TAG
+          helm upgrade spring-boot-rest-example spring-boot-rest-example --values spring-boot-rest-example/values.yaml --set image=$ECR_REGISTRY/$ECR_REPOSITORY --set tag=$IMAGE_TAG
 
 
 
