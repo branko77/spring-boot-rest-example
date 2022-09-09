@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-example
+  labels:
+    app: springboot-example
+spec:
+  type: LoadBalancer
+  selector:
+    app: springboot-example
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 8091

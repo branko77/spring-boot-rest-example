@@ -1,0 +1,4 @@
+deployment:
+  replicas: "0"
+  image: "aimvector/python"
+  tag: "42"

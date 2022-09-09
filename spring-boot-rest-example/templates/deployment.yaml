@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-example
+  labels:
+    app: springboot-example
+    test: test
+  annotations:
+    {}
+spec:
+  selector:
+    matchLabels:
+      app: springboot-example
+  replicas: {{ .Values.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: springboot-example
+    spec:
+      containers:
+      - name: springboot-example
+        image: {{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8091
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+
+        envFrom:
+        - configMapRef:
+            name: springboot-example
+        - secretRef:
+            name: springboot-example            
